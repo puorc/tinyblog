@@ -1,0 +1,16 @@
+{% extends "admin/header.html" %}
+{% block body %}
+    <div class="page">
+        <form action="/admin/settings" method="post">
+            Site name:
+            <input type="text" name="sitename"/><br/>
+            Site description:
+            <input type="text" name="description"/><br/>
+            The number of posts to show:
+            <input type="text" name="defaultpage"/><br/>
+            Default page id
+            <input type="text" name="numberofarticle"/><br/>
+            <input type="submit" value="save"/>
+        </form>
+    </div>
+{% endblock %}

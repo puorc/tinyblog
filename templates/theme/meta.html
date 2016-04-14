@@ -1,0 +1,12 @@
+{% extends "theme/base.html" %}
+{% block body %}
+    <div class="page">
+        <ol>
+            {% for item in contents['list_of_posts'] %}
+                <a href="{{ url_for('show_post',cid=item[0]) }}">
+                    <li>{{ item[1] }}</li>
+                </a>
+            {% endfor %}
+        </ol>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "admin/header.html" %}
+{% block body %}
+    <div class="page">
+        <form action="/admin/change" method="post">
+            <dl>
+                <dt>Name:
+                <dd><input type="text" size="30" name="metas_name" value="{{ metas['name'] }}">
+                <dt>Nickname:
+                <dd><input type="text" size="30" name="metas_nickname" value="{{ metas['nickname'] }}">
+                <dd><input type="submit" value="Change">
+            </dl>
+        </form>
+    </div>
+{% endblock %}

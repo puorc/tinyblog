@@ -1,0 +1,29 @@
+{% extends "theme/base.html" %}
+{% block body %}
+    <div class="page">
+        <h3>{{ contents['text'][0][0] }}</h3>
+        <p>date:{{ contents['text'][0][2] }} category:{{ contents['text'][0][3] }} tag:{{ contents['text'][0][4] }}</p>
+        <br/><br/>
+        <p>{{ contents['text'][0][1] }}</p>
+    </div>
+{% endblock %}
+{% block sidebar %}
+    <div class="sidebar">
+        <p><b>Category</b></p>
+        <ul>
+            {% for item in contents['category'] %}
+                <li>{{ item[1] }}</li>
+            {% endfor %}
+        </ul>
+        <br/>
+        <br/>
+        <p><b>Tag</b></p>
+        <ul>
+            {% for item in contents['tag'] %}
+                <li>{{ item[1] }}</li>
+            {% endfor %}
+        </ul>
+        <br/>
+        <br/>
+    </div>
+{% endblock %}

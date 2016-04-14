@@ -1,0 +1,17 @@
+{% extends "admin/header.html" %}
+{% block body %}
+    <div class="page">
+        <ol>
+            {% for item in contents %}
+                <li>{{ item[0] }}</li>
+                <a class="pos_right" href="/admin/change?key={{ item[0] }}&type={{ g.handle_type }}">change</a>
+                <a class="pos_right" href="/admin/delete?key={{ item[0] }}&type={{ g.handle_type }}">delete</a>
+            {% else %}
+                <p>nothing</p>
+            {% endfor %}
+        </ol>
+        <br/>
+        <br/>
+        <a href="{{ g.handle_url }}">New</a>
+    </div>
+{% endblock %}

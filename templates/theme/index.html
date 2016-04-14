@@ -1,0 +1,31 @@
+{% extends "theme/base.html" %}
+{% block body %}
+    <div class="page">
+        {% for item in contents['post'] %}
+            <h3><a href="{{ url_for('show_post', cid=item[0]) }}">{{ item[1] }}</a></h3>
+            <p>date:{{ item[2] }} category:{{ item[3] }} tag:{{ item[4] }}</p>
+        {% else %}
+            <p>nothing</p>
+        {% endfor %}
+    </div>
+{% endblock %}
+{% block sidebar %}
+    <div class="sidebar">
+        <p><b>Category</b></p>
+        <ul>
+            {% for item in contents['category'] %}
+                <li><a href="{{ url_for('show_category',cid=item[0]) }}">{{ item[1] }}</a></li>
+            {% endfor %}
+        </ul>
+        <br/>
+        <br/>
+        <p><b>Tag</b></p>
+        <ul>
+            {% for item in contents['tag'] %}
+                <li><a href="{{ url_for('show_tag',cid=item[0]) }}">{{ item[1] }}</a></li>
+            {% endfor %}
+        </ul>
+        <br/>
+        <br/>
+    </div>
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends "admin/header.html" %}
+{% block body %}
+    <div class="page">
+        <form action="{{ g.handle_url }}" method="post">
+            <dl>
+                <dt>Name:
+                <dd><input type="text" size="30" name="metas_name">
+                <dt>Nickname:
+                <dd><input type="text" size="30" name="metas_nickname">
+                <dd><input type="submit" value="Add">
+            </dl>
+        </form>
+    </div>
+{% endblock %}

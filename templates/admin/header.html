@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+        "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+    <title>{{ g.info[0] }}</title>
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style-admin.css') }}">
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <h1><a href="/">{{ g.info[0] }}</a></h1>
+        <h3>{{ g.info[1] }}</h3>
+        <a href="{{ url_for('overview') }}">overview</a>
+        <a href="{{ url_for("admin_show",type="post") }}">post</a>
+        <a href="{{ url_for("admin_show",type="page") }}">page</a>
+        <a href="{{ url_for("admin_show",type="category") }}">category</a>
+        <a href="{{ url_for("admin_show",type="tag") }}">tag</a>
+        <a href="{{ url_for("admin_show",type="comment") }}">comment</a>
+        <a href="{{ url_for('settings') }}">settings</a>
+        <a href="{{ url_for('logout') }}">log out</a>
+        <br/>
+        <br/>
+    </div>
+    {% block body %}{% endblock %}
+</div>
+</body>
+</html>
