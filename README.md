@@ -1,6 +1,6 @@
 #                        tinyblog 
 
-#####       just for fun, a lot improvement are required:).
+#####       just for fun, a lot of improvements are required:).
 
 
     ~ How do I use it?
