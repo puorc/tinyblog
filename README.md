@@ -1,4 +1,4 @@
-#                        / tinyblog /
+#                        tinyblog 
 
 #####       just for fun, a lot improvement are required:).
 
