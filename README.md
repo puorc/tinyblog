@@ -1,4 +1,4 @@
-#                        tinyblog 
+#                        tinyblog ( To be refactored)
 
 #####       just for fun, a lot of improvements are required:).
 
