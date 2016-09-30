@@ -1,9 +1,25 @@
 {% extends "admin/header.html" %}
 {% block body %}
-    <div class="page">
-        <p>{{ num['post'] }} posts</p>
-        <p>{{ num['page'] }} pages</p>
-        <p>{{ num['category'] }} categories</p>
-        <p>{{ num['tag'] }} tags</p>
+    <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+            <li class="active"><a href="{{ url_for('overview') }}">Overview</a></li>
+            <li><a href="{{ url_for("admin_show",type="post") }}">Posts</a></li>
+            <li><a href="{{ url_for("admin_show",type="page") }}">Pages</a></li>
+            <li><a href="{{ url_for("admin_show",type="category") }}">Categories</a></li>
+            <li><a href="{{ url_for("admin_show",type="tag") }}">Tags</a></li>
+            <li><a href="{{ url_for('settings') }}">Settings</a></li>
+        </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h2 class="sub-header">Statistics</h2>
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-success">{{ num['post'] }} posts</li>
+            <br>
+            <li class="list-group-item list-group-item-info">{{ num['page'] }} pages</li>
+            <br>
+            <li class="list-group-item list-group-item-warning">{{ num['category'] }} categories</li>
+            <br>
+            <li class="list-group-item list-group-item-danger">{{ num['tag'] }} tags</li>
+        </ul>
     </div>
 {% endblock %}

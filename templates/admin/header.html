@@ -1,27 +1,57 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <title>{{ g.info[0] }}</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style-admin.css') }}">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Dashboard</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+
+    <!-- Custom styles for this template -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='dashboard.css') }}">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
+
 <body>
-<div class="container">
-    <div class="header">
-        <h1><a href="/">{{ g.info[0] }}</a></h1>
-        <h3>{{ g.info[1] }}</h3>
-        <a href="{{ url_for('overview') }}">overview</a>
-        <a href="{{ url_for("admin_show",type="post") }}">post</a>
-        <a href="{{ url_for("admin_show",type="page") }}">page</a>
-        <a href="{{ url_for("admin_show",type="category") }}">category</a>
-        <a href="{{ url_for("admin_show",type="tag") }}">tag</a>
-        <a href="{{ url_for("admin_show",type="comment") }}">comment</a>
-        <a href="{{ url_for('settings') }}">settings</a>
-        <a href="{{ url_for('logout') }}">log out</a>
-        <br/>
-        <br/>
+
+<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
+                    aria-expanded="false" aria-controls="navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/">{{ g.info[0] }}</a>
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ url_for('overview') }}">Dashboard</a></li>
+                <li><a href="{{ url_for('logout') }}">Log out</a></li>
+            </ul>
+        </div>
     </div>
-    {% block body %}{% endblock %}
+</nav>
+
+<div class="container-fluid">
+    <div class="row">
+        {% block body %}{% endblock %}
+    </div>
 </div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="http://apps.bdimg.com/libs/jquery/1.11.1/jquery.min.js"></script>
 </body>
 </html>

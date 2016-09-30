@@ -1,17 +1,54 @@
 {% extends "admin/header.html" %}
 {% block body %}
-    <div class="page">
-        <ol>
-            {% for item in contents %}
-                <li>{{ item[0] }}</li>
-                <a class="pos_right" href="/admin/change?key={{ item[0] }}&type={{ g.handle_type }}">change</a>
-                <a class="pos_right" href="/admin/delete?key={{ item[0] }}&type={{ g.handle_type }}">delete</a>
+    <div class="col-sm-3 col-md-2 sidebar">
+        <ul class="nav nav-sidebar">
+            {% if g.handle_type == 'post' %}
+                <li><a href="{{ url_for('overview') }}">Overview</a></li>
+                <li class="active"><a href="{{ url_for("admin_show",type="post") }}">Posts</a></li>
+                <li><a href="{{ url_for("admin_show",type="page") }}">Pages</a></li>
+                <li><a href="{{ url_for("admin_show",type="category") }}">Categories</a></li>
+                <li><a href="{{ url_for("admin_show",type="tag") }}">Tags</a></li>
+                <li><a href="{{ url_for('settings') }}">Settings</a></li>
+            {% elif g.handle_type == 'page' %}
+                <li><a href="{{ url_for('overview') }}">Overview</a></li>
+                <li><a href="{{ url_for("admin_show",type="post") }}">Posts</a></li>
+                <li class="active"><a href="{{ url_for("admin_show",type="page") }}">Pages</a></li>
+                <li><a href="{{ url_for("admin_show",type="category") }}">Categories</a></li>
+                <li><a href="{{ url_for("admin_show",type="tag") }}">Tags</a></li>
+                <li><a href="{{ url_for('settings') }}">Settings</a></li>
+            {% elif g.handle_type == 'category' %}
+                <li><a href="{{ url_for('overview') }}">Overview</a></li>
+                <li><a href="{{ url_for("admin_show",type="post") }}">Posts</a></li>
+                <li><a href="{{ url_for("admin_show",type="page") }}">Pages</a></li>
+                <li class="active"><a href="{{ url_for("admin_show",type="category") }}">Categories</a></li>
+                <li><a href="{{ url_for("admin_show",type="tag") }}">Tags</a></li>
+                <li><a href="{{ url_for('settings') }}">Settings</a></li>
             {% else %}
-                <p>nothing</p>
+                <li><a href="{{ url_for('overview') }}">Overview</a></li>
+                <li><a href="{{ url_for("admin_show",type="post") }}">Posts</a></li>
+                <li><a href="{{ url_for("admin_show",type="page") }}">Pages</a></li>
+                <li><a href="{{ url_for("admin_show",type="category") }}">Categories</a></li>
+                <li class="active"><a href="{{ url_for("admin_show",type="tag") }}">Tags</a></li>
+                <li><a href="{{ url_for('settings') }}">Settings</a></li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+        <h2 class="sub-header">Posts</h2>
+        <ul class="list-group">
+            {% for item in contents %}
+                <li class="list-group-item">{{ item[0] }}
+                    <button type="button" class="btn btn-danger pull-right btn-xs"
+                            onclick="window.open('/admin/delete?key={{ item[0] }}&type={{ g.handle_type }}')">Delete
+                    </button>
+                    <button type="button" class="btn btn-success pull-right btn-xs"
+                            onclick="window.open('/admin/change?key={{ item[0] }}&type={{ g.handle_type }}')">Change
+                    </button>
+                </li>
+            {% else %}
+                <li class="list-group-item">Sorry, no posts.</li>
             {% endfor %}
-        </ol>
-        <br/>
-        <br/>
-        <a href="{{ g.handle_url }}">New</a>
+        </ul>
+        <button type="button" class="btn btn-primary btn-lg" onclick="window.open('{{ g.handle_url }}')">New</button>
     </div>
 {% endblock %}
