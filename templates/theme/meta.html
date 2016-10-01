@@ -1,12 +1,50 @@
 {% extends "theme/base.html" %}
 {% block body %}
-    <div class="page">
-        <ol>
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
             {% for item in contents['list_of_posts'] %}
-                <a href="{{ url_for('show_post',cid=item[0]) }}">
-                    <li>{{ item[1] }}</li>
-                </a>
+                <article class="post type-post status-publish format-standard hentry">
+                    <header class="entry-header">
+                        <h1 class="entry-title"><a href="{{ url_for('show_post', cid=item[0]) }}">{{ item[1] }}</a>
+                        </h1>
+                        <div class="entry-meta">
+                        <span class="posted-on"><time
+                                class="entry-date published updated">{{ item[2] }}</time>
+                        </span>
+                            <span class="byline">
+                                <span class="author vcard">{{ item[3] }}</span></span>
+                            <span class="comments-link">
+                                {{ item[4] }}
+                            </span>
+                        </div>
+                    </header><!-- .entry-header -->
+
+                    <div class="entry-summary">
+                        {{ item[1] }}
+                    </div><!-- .entry-summary -->
+                    <footer class="entry-footer">
+                    </footer><!-- .entry-footer -->
+                </article><!-- #post-## -->
+            {% else %}
+                <p>nothing</p>
             {% endfor %}
-        </ol>
+        </main><!-- #main -->
     </div>
 {% endblock %}
+{% block sidebar %}
+    <div id="secondary" class="widget-area" role="complementary">
+        <aside id="meta-2" class="widget widget_meta"><h1 class="widget-title">Manage</h1>
+            <ul>
+                {% if not session.logged_in %}
+                    <li>
+                        <a href="{{ url_for('login') }}">Log in</a>
+                        {% else %}
+                        <a href="{{ url_for('overview') }}">Dashboard</a>
+                    </li>
+                    <li><a href="{{ url_for('logout') }}">Log out</a></li>{% endif %}
+                <li><a href="https://github.com/puorc/tinyblog">Github</a>
+                </li>
+            </ul>
+        </aside>
+    </div>
+{% endblock %}}

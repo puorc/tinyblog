@@ -1,7 +1,16 @@
 {% extends "theme/base.html" %}
 {% block body %}
-    <div class="page">
-        <p>{{ contents['text'][0][1] }}</p>
+    <div id="primary" class="content-area">
+        <main id="main" class="site-main" role="main">
+            <article>
+                <div class="entry-summary">
+                    {{ contents['text'][0][1] }}
+                </div><!-- .entry-summary -->
+                <footer class="entry-footer">
+                </footer><!-- .entry-footer -->
+            </article><!-- #post-## -->
+        </main><!-- #main -->
     </div>
 {% endblock %}
+
 
