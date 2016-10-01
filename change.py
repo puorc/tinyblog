@@ -41,9 +41,9 @@ def post(title):
         post_date = str(datetime.datetime.now().year) + '-' + str(datetime.datetime.now().month) + '-' + str(
             datetime.datetime.now().day)
         g.db.execute(
-            'update contents set title="{new_title}", text="{new_text}", date="{new_date}" where title="{oldtitle}"'.format(
-                new_title=request.form['title'], new_text=request.form['text'], new_date=post_date,
-                oldtitle=title))
+            'update contents set title="{new_title}", text="{new_text}", date="{new_date}", textmd="{new_textmd}" where title="{oldtitle}"'.format(
+                new_title=request.form['title'], new_text=request.form['test-editormd-html-code'], new_date=post_date,
+                oldtitle=title, new_textmd=request.form['test-editormd-markdown-doc']))
         g.db.commit()
         return redirect(url_for("admin_show", type="post"))
     else:
@@ -53,6 +53,7 @@ def post(title):
         content = {}
         content['title'] = contents[0][1]
         content['text'] = contents[0][2]
+        content['textmd'] = contents[0][8]
         return render_template('admin/change-contents.html', content=content)
 
 

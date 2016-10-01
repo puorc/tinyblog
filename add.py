@@ -27,10 +27,10 @@ def post():
         post_date = str(datetime.datetime.now().year) + '-' + str(datetime.datetime.now().month) + '-' + str(
             datetime.datetime.now().day)
         g.db.execute(
-            'insert into contents (title, text, date, category, tag, status, type, commentnum) values (?, ?, ?, ?, ?, ?, ?, ?)',
+            'insert into contents (title, text, date, category, tag, status, type, textmd) values (?, ?, ?, ?, ?, ?, ?, ?)',
             [request.form['title'], request.form['test-editormd-html-code'], post_date, request.form['category'],
              request.form['tag'],
-             'posted', 'post', 0])
+             'posted', 'post', request.form['test-editormd-markdown-doc']])
         g.db.commit()
         return redirect(url_for("admin_show", type="post"))
     else:
@@ -47,15 +47,11 @@ def page():
         post_date = str(datetime.datetime.now().year) + '-' + str(datetime.datetime.now().month) + '-' + str(
             datetime.datetime.now().day)
         g.db.execute(
-            'insert into contents (title, text, date, category, tag, status, type, commentnum) values (?, ?, ?, ?, ?, ?, ?, ?)',
+            'insert into contents (title, text, date, category, tag, status, type, textmd) values (?, ?, ?, ?, ?, ?, ?, ?)',
             [request.form['title'], request.form['test-editormd-html-code'], post_date, 'no', 'no',
-             'posted', 'page', 0])
+             'posted', 'page', request.form['test-editormd-markdown-doc']])
         g.db.commit()
         return redirect(url_for("admin_show", type="page"))
     else:
         metas = None
         return render_template('admin/add-contents.html', metas=metas)
-
-
-def comment():
-    NotImplemented

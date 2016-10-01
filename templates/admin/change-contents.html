@@ -1,14 +1,40 @@
-{% extends "admin/header.html" %}
+{% extends "admin/header-for-contents.html" %}
 {% block body %}
     <div class="page">
         <form action="/admin/change" method="post" class="add-entry">
             <dl>
-                <dt>Title:
-                <dd><input type="text" size="30" name="title" value="{{ content['title'] }}">
-                <dt>Text:
-                <dd><textarea name="text" rows="5" cols="40" >{{ content['text'] }}</textarea><br/><br/>
-                <dd><br/><input type="submit" value="Update">
+                <dt>
+                <dd><br>
+                    <input type="text" class="form-control" name="title"
+                           style="width: 90%; margin-left: auto; margin-right: auto" placeholder="Title"
+                           value="{{ content['title'] }}">
+                    <br>
+                <dt>
+                <dd>
+                    <div id="layout">
+                        <div id="test-editormd">
+                            <textarea style="display:none;">{{ content['textmd'] }}</textarea>
+                        </div>
+                    </div>
+                <dd><input type="submit" value="Update" class="btn btn-default">
+                    <br/>
             </dl>
         </form>
     </div>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/editormd.min.js"></script>
+    <script src="/static/js/en.js"></script>
+    <script type="text/javascript">
+        var testEditor;
+
+        $(function () {
+            testEditor = editormd("test-editormd", {
+                width: "90%",
+                height: 500,
+                syncScrolling: "single",
+                path: "/static/lib/",
+                saveHTMLToTextarea: true
+            });
+        });
+    </script>
 {% endblock %}

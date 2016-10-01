@@ -18,7 +18,7 @@ CREATE TABLE contents (
   tag        INTEGER,
   status     TEXT NOT NULL,
   type       TEXT NOT NULL,
-  commentnum INTEGER
+  textmd    TEXT NOT NULL
 );
 CREATE TABLE metas (
   cid      INTEGER PRIMARY KEY AUTOINCREMENT,
