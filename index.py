@@ -34,9 +34,9 @@ def list_posts():
 
 def show_post(cid):
     cur = g.db.execute('select title, text, date, category, tag from contents where cid={cid}'.format(cid=cid))
-    a = cur.fetchall()
+    post_list = cur.fetchall()
     tmp = []
-    for item in a:
+    for item in post_list:
         cur = g.db.execute('select name from metas where cid={cid}'.format(cid=item[3]))
         cur1 = g.db.execute('select name from metas where cid={cid}'.format(cid=item[4]))
         tmp_item = list(item)
