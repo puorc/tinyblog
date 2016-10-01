@@ -14,23 +14,23 @@
         <h2 class="sub-header">Settings</h2>
         <form action="/admin/settings" method="post">
             <div class="input-group">
-                <span class="input-group-addon">:</span>
-                <input type="text" class="form-control" placeholder="sitename" name="sitename">
+                <input type="text" class="form-control" value="{{ info['sitename'] }}" name="sitename">
+                <span class="input-group-addon">Sitename</span>
             </div>
             <br>
             <div class="input-group">
-                <span class="input-group-addon">:</span>
-                <input type="text" class="form-control" placeholder="description" name="description">
+                <input type="text" class="form-control" value="{{ info['description'] }}" name="description">
+                <span class="input-group-addon">Description</span>
             </div>
             <br>
             <div class="input-group">
-                <span class="input-group-addon">:</span>
-                <input type="text" class="form-control" placeholder="default page id" name="defaultpage">
+                <input type="text" class="form-control" value="{{ info['default_page'] }}" name="defaultpage">
+                <span class="input-group-addon">Default page id</span>
             </div>
             <br>
             <div class="input-group">
-                <span class="input-group-addon">:</span>
-                <input type="text" class="form-control" placeholder="number of articles" name="numberofarticle">
+                <input type="text" class="form-control" value="{{ info['number_of_articles'] }}" name="numberofarticle">
+                <span class="input-group-addon">Number of articles</span>
             </div>
             <br>
             <input type="submit" value="Save" class="btn btn-primary btn-default">

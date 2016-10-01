@@ -199,10 +199,14 @@ def settings():
         g.db.commit()
         return redirect(url_for('settings'))
     else:
-        info = []
-        cur = g.db.execute('select sitename, description from options')
-        info = cur.fetchall()
-        return render_template('admin/settings.html')
+        cur = g.db.execute('select sitename, description, defaultpage, numberofarticle from options')
+        info_tmp = cur.fetchall()
+        info = {}
+        info['sitename'] = info_tmp[0][0]
+        info['description'] = info_tmp[0][1]
+        info['default_page'] = info_tmp[0][2]
+        info['number_of_articles'] = info_tmp[0][3]
+        return render_template('admin/settings.html', info=info)
 
 
 if __name__ == '__main__':
