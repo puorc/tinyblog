@@ -33,4 +33,4 @@ CREATE TABLE options (
   defaultpage     INTEGER,
   numberofarticle INTEGER
 );
-INSERT INTO options VALUES ('Unamed', 'Unamed', 0, 0);
+INSERT INTO options VALUES ('No name', 'No description', 0, 0);
