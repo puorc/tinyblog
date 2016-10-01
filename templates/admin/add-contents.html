@@ -1,48 +1,68 @@
 {% extends "admin/header-for-contents.html" %}
 {% block body %}
-        <div id="layout">
-            <div id="test-editormd">
-                <textarea style="display:none;">
-                </textarea>
-            </div>
-        </div>
-        <script src="/static/js/jquery.min.js"></script>
-        <script src="/static/js/editormd.min.js"></script>
-        <script type="text/javascript">
-			var testEditor;
 
-            $(function() {
-                testEditor = editormd("test-editormd", {
-                    width   : "90%",
-                    height  : 500,
-                    syncScrolling : "single",
-                    path    : "/static/lib/"
-                });
+    <div class="page">
+        <form action="{{ g.handle_url }}" method="post" class="add-entry">
+            <dl>
+                <dt>
+                <dd><br>
+                    <input type="text" class="form-control" name="title"
+                           style="width: 90%; margin-left: auto; margin-right: auto" placeholder="Title">
+                    <br>
+                    <div class="btn-group btn-group-justified"
+                         style="width: 90%; margin-left: auto; margin-right: auto">
+
+                        {% if g.handle_type is equalto('post') %}
+
+                            <div class="btn-group">
+                                Category
+                                <select name="category" class="btn">
+                                    {% for item in metas['category'] %}
+                                        <option value="{{ item[0] }}">{{ item[1] }}</option>
+                                    {% endfor %}
+                                </select><br/><br/>
+                            </div>
+                            <div class="btn-group">
+                                Tag
+                                <select name="tag" class="btn">
+                                    {% for item in metas['tag'] %}
+                                        <option value="{{ item[0] }}">{{ item[1] }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                        {% endif %}
+                        <div class="btn-group">
+                            <input type="submit" class="btn" value="Submit">
+                        </div>
+
+                    </div>
+                    <br>
+                <dt>
+                <dd>
+                    <div id="layout">
+                        <div id="test-editormd">
+                            <textarea style="display:none;"></textarea>
+                        </div>
+                    </div>
+                <dd><br/>
+            </dl>
+        </form>
+    </div>
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/editormd.min.js"></script>
+    <script src="/static/js/en.js"></script>
+    <script type="text/javascript">
+        var testEditor;
+
+        $(function () {
+            testEditor = editormd("test-editormd", {
+                width: "90%",
+                height: 500,
+                syncScrolling: "single",
+                path: "/static/lib/",
+                saveHTMLToTextarea: true
             });
-        </script>
+        });
+    </script>
 {% endblock %}
-{#    <div class="page">#}
-{#        <form action="{{ g.handle_url }}" method="post" class="add-entry">#}
-{#            <dl>#}
-{#                <dt>Title:#}
-{#                <dd><input type="text" size="30" name="title">#}
-{#                <dt>Text:#}
-{#                <dd><textarea name="text" rows="5" cols="40"></textarea><br/><br/>#}
-{#                    {% if g.handle_type is equalto('post') %}#}
-{#                        category:#}
-{#                        <select name="category">#}
-{#                            {% for item in metas['category'] %}#}
-{#                                <option value="{{ item[0] }}">{{ item[1] }}</option>#}
-{#                            {% endfor %}#}
-{#                        </select><br/><br/>#}
-{#                        Tag:#}
-{#                        <select name="tag">#}
-{#                            {% for item in metas['tag'] %}#}
-{#                                <option value="{{ item[0] }}">{{ item[1] }}</option>#}
-{#                            {% endfor %}#}
-{#                        </select>#}
-{#                    {% endif %}#}
-{#                <dd><br/><input type="submit" value="Submit">#}
-{#            </dl>#}
-{#        </form>#}
-{#    </div>#}
+

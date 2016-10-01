@@ -28,7 +28,8 @@ def post():
             datetime.datetime.now().day)
         g.db.execute(
             'insert into contents (title, text, date, category, tag, status, type, commentnum) values (?, ?, ?, ?, ?, ?, ?, ?)',
-            [request.form['title'], request.form['text'], post_date, request.form['category'], request.form['tag'],
+            [request.form['title'], request.form['test-editormd-html-code'], post_date, request.form['category'],
+             request.form['tag'],
              'posted', 'post', 0])
         g.db.commit()
         return redirect(url_for("admin_show", type="post"))
@@ -47,7 +48,7 @@ def page():
             datetime.datetime.now().day)
         g.db.execute(
             'insert into contents (title, text, date, category, tag, status, type, commentnum) values (?, ?, ?, ?, ?, ?, ?, ?)',
-            [request.form['title'], request.form['text'], post_date, 'no', 'no',
+            [request.form['title'], request.form['test-editormd-html-code'], post_date, 'no', 'no',
              'posted', 'page', 0])
         g.db.commit()
         return redirect(url_for("admin_show", type="page"))
