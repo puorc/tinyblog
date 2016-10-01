@@ -1,6 +1,6 @@
 #                        TinyBlog
 
-##      TinyBlog is a lite blog based on flask and sqlite.
+      TinyBlog is a lite blog based on flask and sqlite.
   
    ![](https://raw.githubusercontent.com/puorc/tinyblog/master/example/img1.png)
    ![](https://raw.githubusercontent.com/puorc/tinyblog/master/example/img2.png)
@@ -15,7 +15,9 @@
       
       4. fast and precise
       
- - Credit for
+
+
+- Credit for
 
       1. editor.md
 
@@ -41,7 +43,5 @@
          export an TINYBLOGPY_SETTINGS environment variable
          pointing to a configuration file.
 
-      2.
-         the application will greet you on
-         http://localhost:5000/ and listen to all public requests.
+      2. the application will greet you on http://localhost:5000/ and listen to all public requests.
         
