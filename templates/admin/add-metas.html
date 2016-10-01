@@ -12,36 +12,19 @@
     </div>
     <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
         <h2 class="sub-header">Add a tag/category</h2>
-        {#        <form action="{{ g.handle_url }}" method="post">#}
-        {#            <div class="input-group">#}
-        {#                <span class="input-group-addon">@</span>#}
-        {#                <input type="text" class="form-control" placeholder="Name" name="metas_name">#}
-        {#            </div>#}
-        {#            <br>#}
-        {#            <div class="input-group">#}
-        {#                <span class="input-group-addon">@</span>#}
-        {#                <input type="text" class="form-control" placeholder="Description" name="metas_nickname">#}
-        {#            </div>#}
-        {#            <br>#}
-        {#            <input type="submit" value="Add" class="btn btn-primary btn-default">#}
-        {##}
-        {#        </form>#}
-        <div id="test-editormd">
-            <textarea style="display:none;">[TOC]</textarea>
-        </div>
-    </div>
-    <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
-    <script src="{{ url_for('static', filename='editormd.min.js') }}"></script>
-    <script type="text/javascript">
-        var testEditor;
+        <form action="{{ g.handle_url }}" method="post">
+            <div class="input-group">
+                <span class="input-group-addon">@</span>
+                <input type="text" class="form-control" placeholder="Name" name="metas_name">
+            </div>
+            <br>
+            <div class="input-group">
+                <span class="input-group-addon">@</span>
+                <input type="text" class="form-control" placeholder="Description" name="metas_nickname">
+            </div>
+            <br>
+            <input type="submit" value="Add" class="btn btn-primary btn-default">
 
-        $(function () {
-            testEditor = editormd("test-editormd", {
-                width: "90%",
-                height: 640,
-                syncScrolling: "single",
-                path: "{{ url_for('static', filename='lib') }}"
-            });
-        });
-    </script>
+        </form>
+    </div>
 {% endblock %}
