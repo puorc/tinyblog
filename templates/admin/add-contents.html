@@ -1,28 +1,48 @@
-{% extends "admin/header.html" %}
+{% extends "admin/header-for-contents.html" %}
 {% block body %}
-    <div class="page">
-        <form action="{{ g.handle_url }}" method="post" class="add-entry">
-            <dl>
-                <dt>Title:
-                <dd><input type="text" size="30" name="title">
-                <dt>Text:
-                <dd><textarea name="text" rows="5" cols="40"></textarea><br/><br/>
-                    {% if g.handle_type is equalto('post') %}
-                        category:
-                        <select name="category">
-                            {% for item in metas['category'] %}
-                                <option value="{{ item[0] }}">{{ item[1] }}</option>
-                            {% endfor %}
-                        </select><br/><br/>
-                        Tag:
-                        <select name="tag">
-                            {% for item in metas['tag'] %}
-                                <option value="{{ item[0] }}">{{ item[1] }}</option>
-                            {% endfor %}
-                        </select>
-                    {% endif %}
-                <dd><br/><input type="submit" value="Submit">
-            </dl>
-        </form>
-    </div>
+        <div id="layout">
+            <div id="test-editormd">
+                <textarea style="display:none;">
+                </textarea>
+            </div>
+        </div>
+        <script src="/static/js/jquery.min.js"></script>
+        <script src="/static/js/editormd.min.js"></script>
+        <script type="text/javascript">
+			var testEditor;
+
+            $(function() {
+                testEditor = editormd("test-editormd", {
+                    width   : "90%",
+                    height  : 500,
+                    syncScrolling : "single",
+                    path    : "/static/lib/"
+                });
+            });
+        </script>
 {% endblock %}
+{#    <div class="page">#}
+{#        <form action="{{ g.handle_url }}" method="post" class="add-entry">#}
+{#            <dl>#}
+{#                <dt>Title:#}
+{#                <dd><input type="text" size="30" name="title">#}
+{#                <dt>Text:#}
+{#                <dd><textarea name="text" rows="5" cols="40"></textarea><br/><br/>#}
+{#                    {% if g.handle_type is equalto('post') %}#}
+{#                        category:#}
+{#                        <select name="category">#}
+{#                            {% for item in metas['category'] %}#}
+{#                                <option value="{{ item[0] }}">{{ item[1] }}</option>#}
+{#                            {% endfor %}#}
+{#                        </select><br/><br/>#}
+{#                        Tag:#}
+{#                        <select name="tag">#}
+{#                            {% for item in metas['tag'] %}#}
+{#                                <option value="{{ item[0] }}">{{ item[1] }}</option>#}
+{#                            {% endfor %}#}
+{#                        </select>#}
+{#                    {% endif %}#}
+{#                <dd><br/><input type="submit" value="Submit">#}
+{#            </dl>#}
+{#        </form>#}
+{#    </div>#}

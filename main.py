@@ -1,3 +1,4 @@
+# -*- coding:utf-8 -*-
 import sqlite3, os.path, add, show, delete, change, index
 from flask import Flask, request, session, g, redirect, url_for, \
     abort, render_template, flash
