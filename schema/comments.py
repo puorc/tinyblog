@@ -2,11 +2,11 @@ import sys
 import graphene
 from graphene import relay
 from graphene_sqlalchemy import SQLAlchemyConnectionField, SQLAlchemyObjectType
-from .articles import ArticleModel
 
 sys.path.append("..")
 
 from models.main import session
+from models.article import Article as ArticleModel
 from models.comment import Comment as CommentModel
 
 

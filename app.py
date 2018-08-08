@@ -17,6 +17,5 @@ app.add_url_rule('/graphql',
 def index():
     return "Go to /graphql"
 
-
 if __name__ == "__main__":
     app.run()

@@ -2,6 +2,7 @@ import sys
 import graphene
 from graphene import relay
 from graphene_sqlalchemy import SQLAlchemyConnectionField, SQLAlchemyObjectType
+from werkzeug.security import generate_password_hash
 
 sys.path.append("..")
 
@@ -36,7 +37,7 @@ class addUser(graphene.Mutation):
 
     @classmethod
     def mutate(cls, _, args, context, info):
-        user = UserModel(username=args.get('username'), password=args.get('password'), nickname=args.get('nickname'),
+        user = UserModel(username=args.get('username'), password=generate_password_hash(args.get('password')), nickname=args.get('nickname'),
                          email=args.get('email'), articles=[])
         session.add(user)
         session.commit()
