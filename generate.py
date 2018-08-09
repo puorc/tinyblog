@@ -6,8 +6,11 @@ from models.category import Category
 from models.comment import Comment
 from models.tag import Tag
 from models.user import User
+from models.base import Session, engine, Base
 
-if __name__ == '__main__':
+if __name__ == '__main__': 
+    Base.metadata.create_all(engine)
+    session = Session()
     faker = Factory.create()
     faker_users = [User(
         username=faker.name(),

@@ -4,9 +4,11 @@
 from flask import Flask, render_template
 from flask_graphql import GraphQLView
 from models.main import session
+from flask_cors import CORS
 from schema import schema
 
 app = Flask(__name__)
+CORS(app)
 app.debug = True
 
 app.add_url_rule('/graphql',
