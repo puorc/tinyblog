@@ -1,7 +1,15 @@
 import React from "react";
 import { Query } from "react-apollo";
 import gql from "graphql-tag";
-import { Button, Checkbox, Icon, Table, Menu } from "semantic-ui-react";
+import {
+  Button,
+  Checkbox,
+  Icon,
+  Table,
+  Menu,
+  Loader,
+  Dimmer
+} from "semantic-ui-react";
 
 const ArticlePostQuery = gql`
   {
@@ -34,8 +42,40 @@ class ArticleList extends React.Component {
     return (
       <Query query={ArticlePostQuery}>
         {({ loading, error, data }) => {
-          if (loading) return <div>Fetching</div>;
-          if (error) return <div>rr</div>;
+          let content;
+          if (loading)
+            content = (
+              <Dimmer active>
+                <Loader />
+              </Dimmer>
+            );
+          else if (error) {
+            content = <div>Error!</div>;
+          } else {
+            content = data.allArticles.edges.map(item => (
+              <Table.Row>
+                <Table.Cell collapsing>
+                  <Checkbox />
+                </Table.Cell>
+                <Table.Cell>{item.node.title}</Table.Cell>
+                <Table.Cell>{item.node.author.username}</Table.Cell>
+                <Table.Cell>{item.node.category.name}</Table.Cell>
+                <Table.Cell>no tag</Table.Cell>
+                <Table.Cell>{item.node.comments.edges.length}</Table.Cell>
+                <Table.Cell>{item.node.createdTime}</Table.Cell>
+                <Table.Cell>
+                  <Button.Group
+                    buttons={[
+                      { key: "edit", icon: "edit" },
+                      { key: "trash", icon: "trash" },
+                      { key: "eye", icon: "eye" }
+                    ]}
+                  />
+                </Table.Cell>
+              </Table.Row>
+            ));
+          }
+
           return (
             <Table celled compact definition>
               <Table.Header fullWidth>
@@ -51,30 +91,7 @@ class ArticleList extends React.Component {
                 </Table.Row>
               </Table.Header>
 
-              <Table.Body>
-                {data.allArticles.edges.map(item => (
-                  <Table.Row>
-                    <Table.Cell collapsing>
-                      <Checkbox />
-                    </Table.Cell>
-                    <Table.Cell>{item.node.title}</Table.Cell>
-                    <Table.Cell>{item.node.author.username}</Table.Cell>
-                    <Table.Cell>{item.node.category.name}</Table.Cell>
-                    <Table.Cell>no tag</Table.Cell>
-                    <Table.Cell>{item.node.comments.edges.length}</Table.Cell>
-                    <Table.Cell>{item.node.createdTime}</Table.Cell>
-                    <Table.Cell>
-                      <Button.Group
-                        buttons={[
-                          { key: "edit", icon: "edit" },
-                          { key: "trash", icon: "trash" },
-                          { key: "eye", icon: "eye" }
-                        ]}
-                      />
-                    </Table.Cell>
-                  </Table.Row>
-                ))}
-              </Table.Body>
+              <Table.Body>{content}</Table.Body>
               <Table.Footer fullWidth>
                 <Table.Row>
                   <Table.HeaderCell />
