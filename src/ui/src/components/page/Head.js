@@ -1,13 +1,12 @@
 import React from "react";
-import { Container, Header, Grid, Segment, List } from "semantic-ui-react";
-
+import { Header } from "semantic-ui-react";
 
 class Head extends React.Component {
   render() {
     return (
-      <div>
-        <Header as="h2">name</Header>
-        <Header as="h5">description</Header>
+      <div style={{ marginTop: "10px", marginBottom: "15px" }}>
+        <Header className="title" as="h2">Tiny Blog</Header>
+        <Header className="description" as="h5">just another blog</Header>
       </div>
     );
   }

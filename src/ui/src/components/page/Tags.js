@@ -1,5 +1,5 @@
 import React from "react";
-import { Label, Icon, Header } from "semantic-ui-react";
+import { Label, Header } from "semantic-ui-react";
 
 class Tags extends React.Component {
   render() {
@@ -9,7 +9,7 @@ class Tags extends React.Component {
       </Label>
     ));
     return (
-      <div>
+      <div style={{ marginTop: "20px" }}>
         <Header as="h3">Tags</Header>
         {content}
       </div>

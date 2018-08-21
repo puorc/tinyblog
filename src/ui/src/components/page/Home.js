@@ -1,10 +1,7 @@
 import React from "react";
 import {
   Container,
-  Header,
   Grid,
-  Segment,
-  List,
   Dimmer,
   Loader
 } from "semantic-ui-react";
@@ -64,7 +61,6 @@ class Page extends React.Component {
     return (
       <Query query={QUERY}>
         {({ loading, error, data }) => {
-            console.log(data)
           if (loading)
             return (
               <Dimmer active>
@@ -72,7 +68,6 @@ class Page extends React.Component {
               </Dimmer>
             );
           else if (error) {
-            console.log(error);
             return <div>Error!</div>;
           } else {
             return (
@@ -83,7 +78,7 @@ class Page extends React.Component {
                     <Grid.Column width={8}>
                       <Articles data={data.allArticles.edges} />
                     </Grid.Column>
-                    <Grid.Column width={4}>
+                    <Grid.Column floated="right" width={4}>
                       <Categories data={data.allCategories.edges} />
                       <Tags data={data.allTags.edges} />
                     </Grid.Column>
